@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8ccc675f-2c0c-49ed-a688-959cb9658760" name="Default Changelist" comment="first version">
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/briteERP/tests/crmTests/Oznur" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/briteERP/pages/crmPage/CRMPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/briteERP/pages/crmPage/CRMPage.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
