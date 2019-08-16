@@ -1,33 +1,117 @@
 package com.briteERP.utilities;
 
 
+import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.Status;
+import com.aventstack.extentreports.markuputils.ExtentColor;
+import com.aventstack.extentreports.markuputils.MarkupHelper;
+import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.interactions.Actions;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
+import org.testng.ITestResult;
+import org.testng.annotations.*;
+import org.testng.asserts.SoftAssert;
 
-
+import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.concurrent.TimeUnit;
 
 public class TestBase {
-    //should be public/protected !!!!
-    public WebDriver driver;
-    public Actions action;  //we dont need to initiliaze again action class in our test class
 
-    @BeforeMethod
-    public void setup(){
-        driver = Driver.getDriver();
-        action = new Actions(driver);
-        driver.manage().timeouts().implicitlyWait(Long.valueOf(ConfigurationReader.getProperty("implicitwait")), TimeUnit.SECONDS);
-        driver.manage().window().maximize();
-        driver.get(ConfigurationReader.getProperty("url"));
+    //should be public/protected !!!!
+    protected WebDriver driver;
+    protected Pages pages;
+    protected SoftAssert softAssert;
+    protected static ExtentReports report;  //to store the resultant HTML file”
+    protected static ExtentHtmlReporter htmlReporter; // ExtentReports is an open-source reporting library,   It is used the custumize HTML of the reports
+    protected static ExtentTest extentLogger; //it is use to generate log in the reports
+    private static final Logger logger = LogManager.getLogger();
+
+
+    @BeforeSuite(alwaysRun = true) //xml den run edince before ve after methodunu run etmez. always run diyerek
+    //bunlarin daima run etmesini sagliyoruz.
+    @Parameters("test")   //xml'den test yapak istedigimizde parametre kismina ne girdiysek, onu yazmak zorundayiz/bu bize birden fazla browserda
+    //test edebilme kolayligi sagliyor.
+
+    public void setUpTest(@Optional String test) {
+        // actual reporter
+        report = new ExtentReports();
+        // System.getProperty("user.dir") ---> get the path to current project
+        // test-output --> folder in the current project, will be created by testng if
+        // it does not already exist
+        // report.html --> name of the report file
+        if (test == null) {
+            test = "reports";
+        }
+        String filePath = System.getProperty("user.dir") + "/test-output/" + test + "/" + LocalDate.now().format(DateTimeFormatter.ofPattern("MM_dd_yyyy")) + "/report.html";
+        htmlReporter = new ExtentHtmlReporter(filePath);
+        logger.info("Report path: "+filePath);
+        report.attachReporter(htmlReporter);
+        report.setSystemInfo("ENV", "qa");
+        report.setSystemInfo("browser", ConfigurationReader.getProperty("browser"));
+        report.setSystemInfo("OS", System.getProperty("os.name"));
+        htmlReporter.config().setDocumentTitle("VYTrack Test automation");
+        htmlReporter.config().setReportName("VYTrack Test automation");
+        if (System.getenv("runner") != null) {
+            extentLogger.info("Running: " + System.getenv("runner"));
+        }
     }
 
-    @AfterMethod
-    public void teardown(){
 
+    @BeforeMethod(alwaysRun = true)
+    @Parameters("browser")
+    public void setup(@Optional String browser) {
+        driver = Driver.getDriver(browser);  //to create driver object we call a method from driver class.
+        pages = new Pages();
+        softAssert = new SoftAssert();  //kullanma ihtimalin olan objeleri bunun icinde olustur.
+        driver.manage().timeouts().implicitlyWait(Long.valueOf(ConfigurationReader.getProperty("implicitwait")), TimeUnit.SECONDS);
+        driver.manage().window().maximize();
+        String URL = ConfigurationReader.getProperty("url");
+        driver.get(URL);
+     //   logger.info("URL: "+ConfigurationReader.getProperty("environment"));
+    }
+
+    @AfterMethod(alwaysRun = true)
+    @Parameters("browser")
+    public void teardown(@Optional String browser, ITestResult result) {
+
+        // checking if the test method failed
+
+        if (result.getStatus() == ITestResult.FAILURE) {
+            // get screenshot using the utility method and save the location of the screenshot
+            String screenshotLocation = BriteUtils.getScreenshot(result.getName());
+
+            // capture the name of test method
+            extentLogger.fail(result.getName());
+
+            // add the screenshot to the report
+            try {
+                extentLogger.addScreenCaptureFromPath(screenshotLocation);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            // capture the exception thrown
+            extentLogger.fail(result.getThrowable());
+
+        } else if (result.getStatus() == ITestResult.SUCCESS) {
+            extentLogger.log(Status.PASS, MarkupHelper.createLabel(result.getName() + " PASSED ", ExtentColor.GREEN));
+        } else if (result.getStatus() == ITestResult.SKIP) {
+            extentLogger.skip("Test Case Skipped is " + result.getName());
+        }
+        if(browser == null){
+            browser = ConfigurationReader.getProperty("browser");
+        }
+        extentLogger.log(Status.INFO, MarkupHelper.createLabel("Browser: "+browser, ExtentColor.ORANGE));
+        softAssert.assertAll();
         Driver.closeDriver();
     }
 
-
+    @AfterSuite(alwaysRun = true)
+    public void tearDownTest() {
+        logger.info(":: FLUSHING REPORT ::");
+        report.flush();
+    }
 }

@@ -1,16 +1,16 @@
-package com.briteERP.pages.loginPages;
+package com.briteERP.pages.loginPage;
 
+import com.briteERP.utilities.BasePage;
+import com.briteERP.utilities.BriteUtils;
 import com.briteERP.utilities.Driver;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.testng.Assert;
-import org.testng.annotations.Test;
 
-public class LoginPages {
+public class LoginPage  extends BasePage {
 
-    public LoginPages(){
+    public LoginPage(){
 
         PageFactory.initElements(Driver.getDriver(), this);
     }
@@ -37,9 +37,9 @@ public class LoginPages {
     public WebElement errorMessageElement;
 
     public void login(String username, String password){
-        userNameLocator.sendKeys(username);
-        passwordLocator.sendKeys(password);
-        logInButtonLocator.click();
+        BriteUtils.sendKeys(userNameLocator,10,username);
+        BriteUtils.sendKeys( passwordLocator,10,password);
+        BriteUtils.waitForClickablility(logInButtonLocator,10).click();
     }
 
 

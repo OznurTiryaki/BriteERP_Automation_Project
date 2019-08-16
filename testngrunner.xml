@@ -1,0 +1,9 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="CRM tests">
+    <test name="Create Pivot Test Tests">
+        <classes>
+            <class name="com.briteERP.tests.components.crmTests.CreatePivotTest"/>
+        </classes>
+    </test>
+
+</suite>
