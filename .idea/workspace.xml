@@ -2,26 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8ccc675f-2c0c-49ed-a688-959cb9658760" name="Default Changelist" comment="first version">
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/multi_browser_testing.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/runner_with_parameters.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/log4j2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/briteERP/pages/homePage/HomePage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/briteERP/utilities/BasePage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/briteERP/utilities/Pages.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/testngrunner.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configuration.properties" beforeDir="false" afterPath="$PROJECT_DIR$/configuration.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/briteERP/pages/crmPages/CrmPages.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/briteERP/pages/crmPage/CRMPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/briteERP/pages/loginPages/LoginPages.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/briteERP/pages/loginPage/LoginPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/briteERP/tests/crmTests/TestDeneme.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/briteERP/tests/crmTests/createPivotTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/briteERP/tests/components/crmTests/CreatePivotTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/briteERP/tests/loginTests/LoginTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/briteERP/tests/components/loginTest/LoginTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/briteERP/utilities/BriteUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/briteERP/utilities/BriteUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/briteERP/utilities/Driver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/briteERP/utilities/Driver.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/briteERP/utilities/TestBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/briteERP/utilities/TestBase.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/briteERP/tests/crmTests/Oznur" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -40,7 +21,7 @@
         <entry file="file://$PROJECT_DIR$/src/test/java/com/briteERP/pages/crmPage/CRMPage.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="467">
-              <caret line="86" column="8" selection-start-line="86" selection-start-column="8" selection-end-line="86" selection-end-column="8" />
+              <caret line="86" column="36" selection-start-line="86" selection-start-column="36" selection-end-line="86" selection-end-column="36" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -400,7 +381,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="1280" y="0" width="1920" height="1080" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24387646" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -615,7 +595,7 @@
     <entry file="file://$PROJECT_DIR$/src/test/java/com/briteERP/pages/crmPage/CRMPage.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="467">
-          <caret line="86" column="8" selection-start-line="86" selection-start-column="8" selection-end-line="86" selection-end-column="8" />
+          <caret line="86" column="36" selection-start-line="86" selection-start-column="36" selection-end-line="86" selection-end-column="36" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
