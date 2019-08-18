@@ -85,8 +85,6 @@ public class CRMPage extends BasePage{
 
         }
 
-
-        System.out.println("bla");
         return sum;
 
 
